@@ -1,4 +1,5 @@
 import sys
+import csv
 
 clients = [
 	{
