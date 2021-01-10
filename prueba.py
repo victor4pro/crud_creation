@@ -1,32 +1,30 @@
-PASSWORD = '12345'
 
+def test_valor_arg(n_arg, *args):
+	print('primer valor normal: ', n_arg)
 
-def upper(func):
-	def wrapper(*args, **kwargs):
-		result = func(*args, **kwargs)
+	for arg in args:
+		print('este es un valor de *args: ', arg)
 
-		return result.upper()
-	return wrapper
+	print(n_arg)
+	print(args)
+	print(type(args))
 
-@upper
-def say_my_name(name):
-	return f'Hola, {name}'
+def test_valor_kwargs(**kwargs):
+	if kwargs is not None:
+		for key, value in kwargs.items():
+			print('%s == %s' %(key, value))
 
-def password_required(func):
-	def wrapper():
-		password = str(input('input the password'))
+		print(type(kwargs))
 
-		if password == PASSWORD:
-			return func()
-		else:
-			print('The password is NOT correct')
-	return wrapper
-
-@password_required
-def needs_password():
-	print('The password is correct')
+def test_valor_kwargs_args(*args, **kwargs):
+	print(type(kwargs))
+	print(kwargs)
+	print('--------------')
+	print(type(args))
+	print(args)
 
 if __name__ == '__main__':
-	valor = say_my_name('Victor')
-	print(valor)
-	needs_password()
+	# test_valor_arg('victor','reynaldo','julian','ricardo')
+	# test_valor_arg(['victor','reynaldo','julian','ricardo'])
+	# test_valor_kwargs(cartoon='batman')
+	test_valor_kwargs_args('flash', 'batman', cartoon='batman', company='dc_comics')
